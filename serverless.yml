@@ -1,0 +1,42 @@
+service: health-wellness-tracker
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+  environment:
+    DYNAMODB_TABLE: HealthData
+
+functions:
+  graphql:
+    handler: handler.graphql
+    events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+
+plugins:
+  - serverless-offline
+
+resources:
+  Resources:
+    HealthDataTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: HealthData
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+custom:
+  webpack:
+    includeModules: true

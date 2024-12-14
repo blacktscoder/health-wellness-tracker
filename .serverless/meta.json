@@ -1,0 +1,227 @@
+{
+  "/Users/admin/Desktop/Portfolio/health-wellness-tracker": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.16",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "sls": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "service": "health-wellness-tracker",
+            "frameworkVersion": "4",
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs18.x",
+              "stage": "dev",
+              "region": "us-east-1",
+              "environment": {
+                "DYNAMODB_TABLE": "HealthData"
+              },
+              "versionFunctions": true
+            },
+            "functions": {
+              "graphql": {
+                "handler": "handler.graphql",
+                "events": [
+                  {
+                    "http": {
+                      "path": "graphql",
+                      "method": "post",
+                      "cors": true
+                    }
+                  }
+                ],
+                "name": "health-wellness-tracker-dev-graphql"
+              }
+            },
+            "plugins": [
+              "serverless-offline"
+            ],
+            "resources": {
+              "Resources": {
+                "HealthDataTable": {
+                  "Type": "AWS::DynamoDB::Table",
+                  "Properties": {
+                    "TableName": "HealthData",
+                    "AttributeDefinitions": [
+                      {
+                        "AttributeName": "userId",
+                        "AttributeType": "S"
+                      }
+                    ],
+                    "KeySchema": [
+                      {
+                        "AttributeName": "userId",
+                        "KeyType": "HASH"
+                      }
+                    ],
+                    "ProvisionedThroughput": {
+                      "ReadCapacityUnits": 5,
+                      "WriteCapacityUnits": 5
+                    }
+                  }
+                }
+              }
+            },
+            "custom": {
+              "webpack": {
+                "includeModules": true
+              }
+            }
+          },
+          "configFileDirPath": "/Users/admin/Desktop/Portfolio/health-wellness-tracker",
+          "config": {
+            "type": "sls"
+          },
+          "options": {
+            "function": "graphql",
+            "path": "event.json"
+          },
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:sls",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": null,
+    "servicePath": "/Users/admin/Desktop/Portfolio/health-wellness-tracker",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "health-wellness-tracker",
+      "frameworkVersion": "4",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs18.x",
+        "stage": "dev",
+        "region": "us-east-1",
+        "environment": {
+          "DYNAMODB_TABLE": "HealthData"
+        },
+        "versionFunctions": true
+      },
+      "functions": {
+        "graphql": {
+          "handler": "handler.graphql",
+          "events": [
+            {
+              "http": {
+                "path": "graphql",
+                "method": "post",
+                "cors": true
+              }
+            }
+          ],
+          "name": "health-wellness-tracker-dev-graphql"
+        }
+      },
+      "plugins": [
+        "serverless-offline"
+      ],
+      "resources": {
+        "Resources": {
+          "HealthDataTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "HealthData",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "userId",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "userId",
+                  "KeyType": "HASH"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 5,
+                "WriteCapacityUnits": 5
+              }
+            }
+          }
+        }
+      },
+      "custom": {
+        "webpack": {
+          "includeModules": true
+        }
+      }
+    },
+    "serviceRawFile": "service: health-wellness-tracker\n\nframeworkVersion: '4'\n\nprovider:\n  name: aws\n  runtime: nodejs18.x\n  stage: dev\n  region: us-east-1\n  environment:\n    DYNAMODB_TABLE: HealthData\n\nfunctions:\n  graphql:\n    handler: handler.graphql\n    events:\n      - http:\n          path: graphql\n          method: post\n          cors: true\n\nplugins:\n  - serverless-offline\n\nresources:\n  Resources:\n    HealthDataTable:\n      Type: AWS::DynamoDB::Table\n      Properties:\n        TableName: HealthData\n        AttributeDefinitions:\n          - AttributeName: userId\n            AttributeType: S\n        KeySchema:\n          - AttributeName: userId\n            KeyType: HASH\n        ProvisionedThroughput:\n          ReadCapacityUnits: 5\n          WriteCapacityUnits: 5\ncustom:\n  webpack:\n    includeModules: true",
+    "command": [
+      "invoke",
+      "local"
+    ],
+    "options": {
+      "function": "graphql",
+      "path": "event.json"
+    },
+    "error": {
+      "message": "The file you provided does not exist: /Users/admin/Desktop/Portfolio/health-wellness-tracker/event.json",
+      "stack": "ServerlessError2: The file you provided does not exist: /Users/admin/Desktop/Portfolio/health-wellness-tracker/event.json\n    at AwsInvokeLocal.validateFile (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:917:9576)\n    at async AwsInvokeLocal.extendedValidate (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:917:10531)\n    at async before:invoke:local:loadEnvVars (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:917:9049)\n    at async PluginManager.runHooks (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:925:9311)\n    at async PluginManager.invoke (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:925:10023)\n    at async PluginManager.run (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:925:10813)\n    at async Serverless.run (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:932:10667)\n    at async runFramework (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:980:2770)\n    at async route (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:1010:14772)\n    at async Object.run2 [as run] (file:///Users/admin/.serverless/releases/4.4.16/package/dist/sf-core.js:1010:15173)",
+      "code": "INVOKE_LOCAL_MISSING_FILE"
+    },
+    "params": {},
+    "machineId": "65eed85b2d4bae1a4f95be55c3323cef",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "ed3b0920-f163-44c9-93f3-13943418680f",
+    "orgName": "blacktscoder",
+    "userId": "8pKTyjLm24jwtnbCW1",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "blacktscoder",
+    "subscription": null,
+    "userEmail": "c19137251i@gmail.com",
+    "serviceProviderAwsRegion": "us-east-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "842676004369",
+    "projectType": "traditional",
+    "versionSf": "4.4.16",
+    "serviceProviderAwsCfStackName": "health-wellness-tracker-dev",
+    "serviceUniqueId": "arn:aws:cloudformation:us-east-1:842676004369:stack/health-wellness-tracker-dev/f24bea70-ba56-11ef-9d86-0affe12cc72b",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:842676004369:stack/health-wellness-tracker-dev/f24bea70-ba56-11ef-9d86-0affe12cc72b",
+    "serviceProviderAwsCfStackCreated": "2024-12-14T20:06:46.788Z",
+    "serviceProviderAwsCfStackUpdated": "2024-12-14T20:28:58.203Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "GraphqlLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:842676004369:function:health-wellness-tracker-dev-graphql:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-health-wellness-tracker-dev-GraphqlLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServiceEndpoint",
+        "OutputValue": "https://v9v248s6ne.execute-api.us-east-1.amazonaws.com/dev",
+        "Description": "URL of the service endpoint",
+        "ExportName": "sls-health-wellness-tracker-dev-ServiceEndpoint"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-1626637f-a51f",
+        "ExportName": "sls-health-wellness-tracker-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  }
+}
